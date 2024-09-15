@@ -12,3 +12,6 @@ Ejercicios investigacion:
 2 crear caso donde un usuario inicie sesion
 3 crear caso donde solo los usuarios autenticados puedan acceder a un recurso protegido
 4 crea caso de donde un usuario pueda cerrar sesion correctamente
+
+[Ver el documento PDF - Proyecto de Cátedra Fase 1](Proyecto%20de%20Catedra%20Fase%201.pdf)
+ 
