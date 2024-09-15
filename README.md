@@ -13,4 +13,4 @@ Ejercicios investigacion:
 3 crear caso donde solo los usuarios autenticados puedan acceder a un recurso protegido
 4 crea caso de donde un usuario pueda cerrar sesion correctamente
 
-[Ver el documento PDF - Investigación Aplicada 2](Investigacion_Aplicada_2.pdf)
+[Ver el documento PDF - Investigación Aplicada 2](Investigación%20aplicada%202.pdf) 
