@@ -53,7 +53,7 @@ app.post('/api/register', (req, res) => {
   users.push(user);
   writeUsersToFile(users);
 
-  res.status(201).json({ message: 'Registro exitoso', user });
+  res.status(201).json({ message: 'Registro exitoso', user});
 });
 
 // Ruta para el inicio de sesión
@@ -67,10 +67,10 @@ app.post('/api/login', (req, res) => {
   }
 
   const token = jwt.sign({ username }, SECRET_KEY, { expiresIn: '1h' });
-  res.status(200).json({ token: 'Bearer ' + token });
+  res.status(200).json({ token });  // Simplificación de la respuesta
 });
 
-// Middleware para verificar el token de autenticación
+
 const authenticateToken = (req, res, next) => {
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
@@ -99,16 +99,17 @@ app.post('/api/logout', authenticateToken, (req, res) => {
   res.status(200).json({ message: 'Sesion cerrada del usuario: ' + req.user.username });
 });
 
-app.get('/api/user-info', authenticateToken, (req, res) => {
+app.get('/api/info', authenticateToken, (req, res) => {
   const users = readUsersFromFile();
   const user = users.find(u => u.username === req.user.username);
   
   if (user) {
       res.status(200).json({ username: user.username, email: user.email });
   } else {
-      res.sendStatus(404);
+      res.sendStatus(404);  // El usuario no encontrado
   }
 });
+
 
 app.listen(port, () => {
   console.log(`http://localhost:${port}`);
