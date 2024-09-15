@@ -3,9 +3,13 @@ const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
 const path = require('path');
+const cors = require('cors')
 
 const app = express();
 const port = process.env.PORT || 3000;
+
+// Configurar CORS
+app.use(cors());
 
 app.use(bodyParser.json());
 
@@ -38,11 +42,6 @@ const writeUsersToFile = (users) => {
 // Ruta para el registro de usuario
 app.post('/api/register', (req, res) => {
   const { username, password, email } = req.body;
-
-  if (!username || !password || !email) {
-    return res.status(400).json({ message: 'Faltan datos para registrar el usuario.' });
-  }
-
   const users = readUsersFromFile();
   const userExists = users.find(u => u.username === username || u.email === email);
 
@@ -98,6 +97,17 @@ app.post('/api/logout', authenticateToken, (req, res) => {
   const token = req.headers['authorization'].split(' ')[1];
   revokedTokens.add(token); // Agrega el token a la lista de revocados
   res.status(200).json({ message: 'Sesion cerrada del usuario: ' + req.user.username });
+});
+
+app.get('/api/user-info', authenticateToken, (req, res) => {
+  const users = readUsersFromFile();
+  const user = users.find(u => u.username === req.user.username);
+  
+  if (user) {
+      res.status(200).json({ username: user.username, email: user.email });
+  } else {
+      res.sendStatus(404);
+  }
 });
 
 app.listen(port, () => {

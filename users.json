@@ -3,5 +3,25 @@
     "username": "Usuario1",
     "password": "pruebaContrasena1",
     "email": "usuario1@prueba.com"
+  },
+  {
+    "username": "erick1",
+    "password": "prueb",
+    "email": "erick@gmail.com"
+  },
+  {
+    "username": "prueba2",
+    "password": "prueba2",
+    "email": "prueba2@gmail.com"
+  },
+  {
+    "username": "erick2",
+    "password": "prueba2",
+    "email": "erick2@gmail.com"
+  },
+  {
+    "username": "prueba3",
+    "password": "prueba",
+    "email": "prueba3@gmail.com"
   }
 ]
